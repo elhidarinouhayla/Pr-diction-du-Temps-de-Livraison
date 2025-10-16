@@ -23,7 +23,7 @@ def pretraitement_donnes(data):
         if data[column].dtypes == 'object':
             data[column] = data[column].fillna(data[column].mode()[0])
 # 2- Supprimer les colonnes inutiles:
-    data = data.drop(columns=['Order_ID', 'Courier_Experience_yrs', 'Vehicle_Type', 'Time_of_Day'])
+    data = data.drop(columns=['Order_ID', 'Courier_Experience_yrs', 'Vehicle_Type'])
     clean_data=data
     return clean_data
 
