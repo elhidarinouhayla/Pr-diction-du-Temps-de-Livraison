@@ -25,9 +25,9 @@ def test_len(charge_data):
 
 
 # 2- Vérification que la MAE maximale ne dépasse pas un seuil défini(RandomForestRegressor) :
-def mae_max_RandomForestRegressor():
+def test_mae_max_RandomForestRegressor(charge_data):
     data = charge_data
-    data_clean = pretraitement_donnes(data)
+    data_clean = pretraitement_donnes(charge_data)
     x,y = split_features(data_clean)
     x_test,y_test,x_train,y_train = split_data(x,y)
 
@@ -43,9 +43,9 @@ def mae_max_RandomForestRegressor():
 
 
 # 3- Vérification que la MAE maximale ne dépasse pas un seuil défini(SVR) :
-def mae_max_SVR():
+def test_mae_max_SVR(charge_data):
     data = charge_data
-    data_clean = pretraitement_donnes(data)
+    data_clean = pretraitement_donnes(charge_data)
     x,y = split_features(data_clean)
     x_test,y_test,x_train,y_train = split_data(x,y)
 
