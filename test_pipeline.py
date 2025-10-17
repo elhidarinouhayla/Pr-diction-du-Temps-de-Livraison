@@ -5,10 +5,6 @@ from pipeline import pretraitement_donnes, split_features, split_data
 from sklearn.metrics import mean_absolute_error
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.svm import SVR
-from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler
-from sklearn.preprocessing import OneHotEncoder
 
 
 
