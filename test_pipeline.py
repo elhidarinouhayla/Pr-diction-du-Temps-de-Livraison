@@ -5,6 +5,11 @@ from pipeline import pretraitement_donnes, split_features, split_data
 from sklearn.metrics import mean_absolute_error
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.svm import SVR
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import OneHotEncoder
+
 
 
 @pytest.fixture
@@ -17,7 +22,7 @@ def test_len(charge_data):
     data = charge_data
     data_clean =pretraitement_donnes(data)
     x,y = split_features(data_clean)
-    x_test,x_train,y_test,y_train = split_data(x,y)
+    x_train,x_test,y_train,y_test = split_data(x,y)
    
     assert len(x_test) == len(y_test)
     assert len(x_train) == len(y_train)
@@ -27,10 +32,9 @@ def test_len(charge_data):
 # 2- Vérification que la MAE maximale ne dépasse pas un seuil défini(RandomForestRegressor) :
 def test_mae_max_RandomForestRegressor(charge_data):
     data = charge_data
-    data_clean = pretraitement_donnes(charge_data)
+    data_clean = pretraitement_donnes(data)
     x,y = split_features(data_clean)
-    x_test,y_test,x_train,y_train = split_data(x,y)
-
+    x_train,x_test,y_train,y_test = split_data(x,y)
     model = RandomForestRegressor(random_state=42)
     model.fit(x_train,y_train)
     y_pred_model = model.predict(x_test)
@@ -45,9 +49,9 @@ def test_mae_max_RandomForestRegressor(charge_data):
 # 3- Vérification que la MAE maximale ne dépasse pas un seuil défini(SVR) :
 def test_mae_max_SVR(charge_data):
     data = charge_data
-    data_clean = pretraitement_donnes(charge_data)
+    data_clean = pretraitement_donnes(data)
     x,y = split_features(data_clean)
-    x_test,y_test,x_train,y_train = split_data(x,y)
+    x_train,x_test,y_train,y_test = split_data(x,y)
 
     svr = SVR()
     svr.fit(x_train,y_train)
